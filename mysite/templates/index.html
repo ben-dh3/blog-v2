@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+  <link type="text/css" href="../mysite/static/mysite.css">
+</head>
+
+<body style="font-family: Courier New, Courier, monospace;">
+  <div class="container" style="justify-content: center; align-items: center; height: 100vh; width: 50%; margin: auto;">
+  
+    <h1 style="text-align: center;">Ben Duffield-Harding's website </h1>
+    
+    <form action="{% url 'subscribe' %}" method="post">
+      <div class="subscribe-btn">
+      {% csrf_token %}
+
+          <div class="col-auto">
+              <p class="pt-2">Subscribe for updates</p>
+          </div>
+
+          <div class="col-auto">
+              <input id="name" name="name" class="form-control" placeholder="Your Name"/>
+          </div>
+
+          <div class="col-auto">
+              <input id="email" name="email" type="email" class="form-control" placeholder="Email address"/>
+          </div>
+          
+          <div>
+            <button type="submit" id="subscribeBtn">Subscribe</button>
+          </div>
+          
+      </div>
+    </form>
+
+    
+
+    {% block content %}
+
+    {% endblock content %}
+  </div>
+</body>
