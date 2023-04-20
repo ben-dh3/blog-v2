@@ -22,12 +22,15 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR,'templates')]
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4v5=hpo#-8g@vd0!0*g+v6vuhtlnqe!3fc$4r8!d3ui14#=)bc'
-
+#SECRET_KEY = 'django-insecure-4v5=hpo#-8g@vd0!0*g+v6vuhtlnqe!3fc$4r8!d3ui14#=)bc'
+with open(os.path.join("/home/ben/code/secret_key.txt")) as f:
+    SECRET_KEY = f.read().strip()
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+]
 
 
 # Application definition
@@ -111,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'GMT'
 
 USE_I18N = True
 
@@ -121,11 +124,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]
+STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# HTTPS settings
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -165,3 +178,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'image_caption': True,
     "images_upload_url": "upload_image",
 }
+
